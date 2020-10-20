@@ -17,7 +17,12 @@ use App\Http\Controllers\TodosController;
 
 Route::get('/', [TodosController::class, 'index']);
 
-Route::get('/secondpage', function () {
-    return view('secondpage', ['title' => 'Custom title']);
-});
+Route::post('/newtodo', [TodosController::class, 'newtodo']);
+
+Route::get('/toggle', [TodosController::class, 'toggle']);
+
+Route::get('/del', [TodosController::class, 'delTodo']);
+
+Route::get('/todo', [TodosController::class, 'todo']);
+
 
