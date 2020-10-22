@@ -15,16 +15,13 @@ use App\Http\Controllers\TodosController;
 |
 */
 
-Route::get('/', [TodosController::class, 'index'])->middleware('auth');
-
-Route::post('/newtodo', [TodosController::class, 'newtodo'])->middleware('auth');
-
-Route::get('/toggle', [TodosController::class, 'toggle'])->middleware('auth');
-
-Route::get('/del', [TodosController::class, 'delTodo'])->middleware('auth');
-
-Route::get('/todo', [TodosController::class, 'todo'])->middleware('auth');
-
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', [TodosController::class, 'index'])->name('home');
+    Route::post('/newtodo', [TodosController::class, 'newtodo'])->name('newtodo');
+    Route::get('/toggle', [TodosController::class, 'toggle'])->name('toggle');
+    Route::get('/del', [TodosController::class, 'delTodo'])->name('delTodo');
+    Route::get('/todo', [TodosController::class, 'todo'])->name('todo');
+});
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

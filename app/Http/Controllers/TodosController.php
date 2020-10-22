@@ -8,7 +8,8 @@ use App\Models\Todo;
 class TodosController extends Controller
 {
     public function index(){
-        $todos = Todo::all();
+        // $todos = Todo::where('user_id', \Auth::id())->get();
+        $todos = \Auth::user()->todos;
         return view('todos', ['todos' => $todos]);
     }
 
@@ -16,6 +17,7 @@ class TodosController extends Controller
         $todo = new Todo();
         $todo->title = $request->get('title');
         $todo->description = $request->get('description', '');
+        $todo->user_id = \Auth::id();
         $todo->save();
         return redirect('/');
     }

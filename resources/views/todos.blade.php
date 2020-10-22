@@ -12,14 +12,14 @@
         <h1>Todo List:</h1>
         @foreach ($todos as $todo)
             @if ($todo['done'])
-                <li><del><a href="/todo?id={{$todo['id']}}">{{ $todo['title'] }}</a></del>
-                    | <strong><a href="/toggle?id={{$todo['id']}}">UnDone</a></strong>
-                    | <strong><a href="/del?id={{$todo['id']}}" style="color: red;">Delete</a></strong>
+                <li><del><a href="{{ route('todo') }}?id={{$todo['id']}}">{{ $todo['title'] }}</a></del>
+                    | <strong><a href="{{ route('toggle') }}?id={{$todo['id']}}">UnDone</a></strong>
+                    | <strong><a href="{{ route('delTodo') }}?id={{$todo['id']}}" style="color: red;">Delete</a></strong>
                 </li>
             @else
                 <li>
                     <a href="/todo?id={{$todo['id']}}">{{ $todo['title'] }}</a>
-                    | <strong><a href="/toggle?id={{$todo['id']}}">Done</a></strong>
+                    | <strong><a href="{{ route('toggle') }}?id={{$todo['id']}}">Done</a></strong>
                 </li>
             @endif
         @endforeach
