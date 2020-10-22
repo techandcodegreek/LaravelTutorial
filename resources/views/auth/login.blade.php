@@ -3,14 +3,15 @@
         <x-slot name="logo">
             <x-jet-authentication-card-logo />
         </x-slot>
-
+        
         <x-jet-validation-errors class="mb-4" />
-
+        
         @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('status') }}
-            </div>
+        <div class="mb-4 font-medium text-sm text-green-600">
+            {{ session('status') }}
+        </div>
         @endif
+        <div class="float-right"><a href="/register">Register</a></div>
 
         <form method="POST" action="{{ route('login') }}">
             @csrf
