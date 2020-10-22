@@ -15,14 +15,19 @@ use App\Http\Controllers\TodosController;
 |
 */
 
-Route::get('/', [TodosController::class, 'index']);
+Route::get('/', [TodosController::class, 'index'])->middleware('auth');
 
-Route::post('/newtodo', [TodosController::class, 'newtodo']);
+Route::post('/newtodo', [TodosController::class, 'newtodo'])->middleware('auth');
 
-Route::get('/toggle', [TodosController::class, 'toggle']);
+Route::get('/toggle', [TodosController::class, 'toggle'])->middleware('auth');
 
-Route::get('/del', [TodosController::class, 'delTodo']);
+Route::get('/del', [TodosController::class, 'delTodo'])->middleware('auth');
 
-Route::get('/todo', [TodosController::class, 'todo']);
+Route::get('/todo', [TodosController::class, 'todo'])->middleware('auth');
 
+
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return Inertia\Inertia::render('Dashboard');
+})->name('dashboard');
 
